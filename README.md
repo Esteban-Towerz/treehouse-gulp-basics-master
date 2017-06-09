@@ -1,6 +1,8 @@
 # Gulp Basics Treehouse Course
 This repository contains the project code for my [Gulp Basics course on Treehouse](https://teamtreehouse.com/library/gulp-basics).
 
+![gulp 1](https://user-images.githubusercontent.com/25851867/26958754-00ba25d0-4c92-11e7-8718-e254158e9004.png)
+
 ## Using this Repo
 This is a node project.  On the master branch is the "final" version of our app.  Each video has a corresponding branch and you can run `git checkout <some-video>` to follow along.  Instruction's are in the Teacher's Notes with each video.
 
