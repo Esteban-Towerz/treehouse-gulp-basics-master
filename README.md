@@ -1,6 +1,8 @@
 # Gulp Basics Treehouse Course
 This repository contains the project code for my [Gulp Basics course on Treehouse](https://teamtreehouse.com/library/gulp-basics).
 
+![gulp 1](https://user-images.githubusercontent.com/25851867/26958754-00ba25d0-4c92-11e7-8718-e254158e9004.png)
+
 ## Quick Start
 ```
 # Clone this repo
