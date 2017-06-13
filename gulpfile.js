@@ -8,18 +8,26 @@ var gulp = require('gulp'),
     maps = require('gulp-sourcemaps'),
      del = require('del');
 
+// Moving files like this completely breaks build pipeline as well as development workflow, 
+// so to fixed that let’s create some variables that contain the path of src folder as well as dist folders
+
+var options = {
+  src: 'src',
+  dist: 'dist'
+};
+
 // 1. Concatenating Scripts in one app.js file
-gulp.task("concatScripts", function() {
-    return gulp.src([ //putting the return statement is because to each task know when the task is finish and start it.
-        'js/jquery.js',
-        'js/sticky/jquery.sticky.js',
-        'js/main.js'
-        ])
-    .pipe(maps.init())
-    .pipe(concat('app.js'))
-    .pipe(maps.write('./')) // .pipe(maps.write('../maps')) 
-    .pipe(gulp.dest('js'));
-});
+// gulp.task("concatScripts", function() {
+//     return gulp.src([ //putting the return statement is because to each task know when the task is finish and start it.
+//         'js/jquery.js',
+//         'js/sticky/jquery.sticky.js',
+//         'js/main.js'
+//         ])
+//     .pipe(maps.init())
+//     .pipe(concat('app.js'))
+//     .pipe(maps.write('./')) // .pipe(maps.write('../maps')) 
+//     .pipe(gulp.dest('js'));
+// });
 
 // 2. Minification of our Javascirpt files
 gulp.task("minifyScripts", ["concatScripts"], function() {
@@ -30,16 +38,16 @@ gulp.task("minifyScripts", ["concatScripts"], function() {
 });
 
 gulp.task('compileSass', function() {
-  return gulp.src("scss/application.scss")
+  return gulp.src(options.src + "scss/application.scss")
       .pipe(maps.init())
       .pipe(sass())
       .pipe(maps.write('./')) // the current working directory relative to the gulp.dest directory
-      .pipe(gulp.dest('css'));
+      .pipe(gulp.dest(options.src + 'css'));
 });
 
 gulp.task('watchFiles', function() {
-  gulp.watch('scss/**/*.scss' , ['compileSass']); // gulb has something call globing pattern is simple a syntaz to matching a names of files like 'scss/**/*.scss' that means looking the subfolder looking the subdirectories and any file with the sass extension .scss
-  gulp.watch('js/main.js', ['concatScripts']);
+  gulp.watch(options.src + 'scss/**/*.scss' , ['compileSass']); // gulp has something call globing pattern is simple a syntaz to matching a names of files like 'scss/**/*.scss' that means looking the subfolder looking the subdirectories and any file with the sass extension .scss
+  // gulp.watch(options.dist + 'js/main.js', ['concatScripts']); we don't even need that
 })
 
 gulp.task('clean', function() {
